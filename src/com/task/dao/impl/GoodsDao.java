@@ -189,14 +189,18 @@ public class GoodsDao implements Dao {
 		String sql2 = "SELECT MAX(Price) AS HighestPrice FROM Bicycle";
 		st.executeUpdate("USE velo_rent");
 		ResultSet rs2 = (ResultSet) st.executeQuery(sql2);
-		Float maxPrice = rs2.getFloat(4);
-		array.add(maxPrice);
+		if (rs2.next()) {
+			Float maxPrice = rs2.getFloat(1);
+			array.add(maxPrice);
+		}
 
 		String sql3 = "SELECT MIN(Price) AS HighestPrice FROM Bicycle";
 		st.executeUpdate("USE velo_rent");
 		ResultSet rs3 = (ResultSet) st.executeQuery(sql3);
-		Float minPrice = rs3.getFloat(4);
-		array.add(minPrice);
+		if (rs3.next()) {
+			Float minPrice = rs3.getFloat(1);
+			array.add(minPrice);
+		}
 
 		return array;
 	}
