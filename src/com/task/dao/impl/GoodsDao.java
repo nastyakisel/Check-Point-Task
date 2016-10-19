@@ -114,12 +114,13 @@ public class GoodsDao implements Dao {
 			e.printStackTrace();
 		}
 		Statement st = (Statement) db.getCon().createStatement();
-		String sql = "INSERT INTO " + goods.getClass().getSimpleName() 
-				+ "(goodName, description, price, quantity)" + " "
-				+ "VALUES(" + goods.getGoodName() + ", " 
-				+ goods.getDescription() + ", " 
-				+ goods.getPrice() + ", "
-				+ goods.getQuantity() + ")";
+		String sql = "INSERT INTO " + goods.getClass().getSimpleName()
+				+ " (goodName, description, price, quantity)"
+				+ " VALUES("
+				+ "'" + goods.getGoodName() + "'," + "'" + goods.getDescription()  
+				+ "',"
+				+ "'" +goods.getPrice()+ "'," 
+				+ "'" + goods.getQuantity() + "'" + ")";
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
 		System.out.println("Òîâàð óñïåøííî äîáàâëåí â áàçó äàííûõ");
