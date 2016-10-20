@@ -136,8 +136,8 @@ public class GoodsDao implements Dao {
 		}
 		Integer id = goods.getId();
 		Statement st = (Statement) db.getCon().createStatement();
-		String sql = "DELETE* FROM " + goods.getClass().getSimpleName()
-				+ "WHERE id=" + id;
+		String sql = "DELETE FROM " + goods.getClass().getSimpleName()
+				+ " WHERE id=" + id;
 		
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
@@ -156,8 +156,13 @@ public class GoodsDao implements Dao {
 		Integer id = goods.getId();
 		Statement st = (Statement) db.getCon().createStatement();
 
-		String sql = "UPDATE Bicycle SET goodName=" + goods.getGoodName() + ", " + goods.getDescription() + ", "
-				+ goods.getPrice() + ", " + goods.getQuantity() + "WHERE id=" + id;
+		String sql = "UPDATE Bicycle SET goodName=" 
+				+ "'" + goods.getGoodName() + "'"
+				+ ", description="
+				+ "'" + goods.getDescription() + "'"
+				+ ", price= '" +  goods.getPrice() + "',"
+				+ "quantity= '" + goods.getQuantity() + "'"
+				+ " WHERE id=" + id;
 
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
