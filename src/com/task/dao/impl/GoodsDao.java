@@ -41,10 +41,10 @@ public class GoodsDao implements Dao {
 		while (rs.next()) {
 			Pump pump = new Pump();
 			pump.setId(rs.getInt(1));
-			pump.setGoodName(rs.getString(1));
-			pump.setDescription(rs.getString(1));
-			pump.setPrice(rs.getFloat(1));
-			pump.setQuantity(rs.getInt(1));
+			pump.setGoodName(rs.getString(2));
+			pump.setDescription(rs.getString(3));
+			pump.setPrice(rs.getFloat(4));
+			pump.setQuantity(rs.getInt(5));
 			// System.out.println(rs.getString(1));
 			pumpList.add(pump);
 		}
@@ -68,10 +68,10 @@ public class GoodsDao implements Dao {
 		while (rs.next()) {
 			Accessorie accessorie = new Accessorie();
 			accessorie.setId(rs.getInt(1));
-			accessorie.setGoodName(rs.getString(1));
-			accessorie.setDescription(rs.getString(1));
-			accessorie.setPrice(rs.getFloat(1));
-			accessorie.setQuantity(rs.getInt(1));
+			accessorie.setGoodName(rs.getString(2));
+			accessorie.setDescription(rs.getString(3));
+			accessorie.setPrice(rs.getFloat(4));
+			accessorie.setQuantity(rs.getInt(5));
 			// System.out.println(rs.getString(1));
 			accessorieList.add(accessorie);
 		}
@@ -95,10 +95,10 @@ public class GoodsDao implements Dao {
 		while (rs.next()) {
 			Bicycle bicycle = new Bicycle();
 			bicycle.setId(rs.getInt(1));
-			bicycle.setGoodName(rs.getString(1));
-			bicycle.setDescription(rs.getString(1));
-			bicycle.setPrice(rs.getFloat(1));
-			bicycle.setQuantity(rs.getInt(1));
+			bicycle.setGoodName(rs.getString(2));
+			bicycle.setDescription(rs.getString(3));
+			bicycle.setPrice(rs.getFloat(4));
+			bicycle.setQuantity(rs.getInt(5));
 			// System.out.println(rs.getString(1));
 			bicycleList.add(bicycle);
 		}
@@ -114,15 +114,16 @@ public class GoodsDao implements Dao {
 			e.printStackTrace();
 		}
 		Statement st = (Statement) db.getCon().createStatement();
-		String sql = "INSERT INTO " + goods.getClass().getSimpleName() 
-				+ "(goodName, description, price, quantity)" + " "
-				+ "VALUES(" + goods.getGoodName() + ", " 
-				+ goods.getDescription() + ", " 
-				+ goods.getPrice() + ", "
-				+ goods.getQuantity() + ")";
+		String sql = "INSERT INTO " + goods.getClass().getSimpleName()
+				+ " (goodName, description, price, quantity)"
+				+ " VALUES("
+				+ "'" + goods.getGoodName() + "'," + "'" + goods.getDescription()  
+				+ "',"
+				+ "'" +goods.getPrice()+ "'," 
+				+ "'" + goods.getQuantity() + "'" + ")";
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
-		System.out.println("Товар успешнно добавлен в базу данных");
+		System.out.println("Г’Г®ГўГ Г° ГіГ±ГЇГҐГёГ­Г­Г® Г¤Г®ГЎГ ГўГ«ГҐГ­ Гў ГЎГ Г§Гі Г¤Г Г­Г­Г»Гµ");
 	}
 
 	@Override
@@ -135,12 +136,12 @@ public class GoodsDao implements Dao {
 		}
 		Integer id = goods.getId();
 		Statement st = (Statement) db.getCon().createStatement();
-		String sql = "DELETE* FROM " + goods.getClass().getSimpleName()
-				+ "WHERE id=" + id;
+		String sql = "DELETE FROM " + goods.getClass().getSimpleName()
+				+ " WHERE id=" + id;
 		
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
-		System.out.println("Запись успешно удалена");
+		System.out.println("Г‡Г ГЇГЁГ±Гј ГіГ±ГЇГҐГёГ­Г® ГіГ¤Г Г«ГҐГ­Г ");
 
 	}
 
@@ -155,12 +156,17 @@ public class GoodsDao implements Dao {
 		Integer id = goods.getId();
 		Statement st = (Statement) db.getCon().createStatement();
 
-		String sql = "UPDATE Bicycle SET goodName=" + goods.getGoodName() + ", " + goods.getDescription() + ", "
-				+ goods.getPrice() + ", " + goods.getQuantity() + "WHERE id=" + id;
+		String sql = "UPDATE Bicycle SET goodName=" 
+				+ "'" + goods.getGoodName() + "'"
+				+ ", description="
+				+ "'" + goods.getDescription() + "'"
+				+ ", price= '" +  goods.getPrice() + "',"
+				+ "quantity= '" + goods.getQuantity() + "'"
+				+ " WHERE id=" + id;
 
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
-		System.out.println("Запись успешно отредактирована");
+		System.out.println("Г‡Г ГЇГЁГ±Гј ГіГ±ГЇГҐГёГ­Г® Г®ГІГ°ГҐГ¤Г ГЄГІГЁГ°Г®ГўГ Г­Г ");
 	}
 
 	
@@ -189,14 +195,18 @@ public class GoodsDao implements Dao {
 		String sql2 = "SELECT MAX(Price) AS HighestPrice FROM Bicycle";
 		st.executeUpdate("USE velo_rent");
 		ResultSet rs2 = (ResultSet) st.executeQuery(sql2);
-		Float maxPrice = rs2.getFloat(1);
-		array.add(maxPrice);
+		if (rs2.next()) {
+			Float maxPrice = rs2.getFloat(1);
+			array.add(maxPrice);
+		}
 
 		String sql3 = "SELECT MIN(Price) AS HighestPrice FROM Bicycle";
 		st.executeUpdate("USE velo_rent");
 		ResultSet rs3 = (ResultSet) st.executeQuery(sql3);
-		Float minPrice = rs3.getFloat(1);
-		array.add(minPrice);
+		if (rs3.next()) {
+			Float minPrice = rs3.getFloat(1);
+			array.add(minPrice);
+		}
 
 		return array;
 	}
