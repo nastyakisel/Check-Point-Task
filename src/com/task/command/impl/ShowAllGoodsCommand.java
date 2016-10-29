@@ -3,18 +3,19 @@ package com.task.command.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.task.bean.AddNewGoodsRequest;
+import com.task.bean.Request;
+import com.task.bean.Response;
+import com.task.bean.ShowAllGoodsRequest;
 import com.task.bean.entity.Accessorie;
 import com.task.bean.entity.Bicycle;
 import com.task.bean.entity.Goods;
 import com.task.bean.entity.Pump;
-import com.task.beans.AddNewGoodsRequest;
-import com.task.beans.Request;
-import com.task.beans.Response;
-import com.task.beans.ShowAllGoodsRequest;
+import com.task.bean.entity.Velogoods;
 import com.task.command.Command;
+import com.task.service.FindGoods;
 import com.task.service.exeption.ServiceException;
 import com.task.service.factory.ServiceFactory;
-import com.task.services.FindGoods;
 
 public class ShowAllGoodsCommand implements Command{
 	public Response execute(Request request) {
@@ -33,37 +34,16 @@ public class ShowAllGoodsCommand implements Command{
 		
 		Response response= new Response();
 		
-		if (categoryName.equals("Bicycle")) {
-			try {
-				List<Bicycle> bicycle = new ArrayList<Bicycle>();
-				bicycle = findGoods.getAllBicycle(categoryName);
-				response.setBicycle(bicycle);
-			} catch (ServiceException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		if (categoryName.equals("Accessorie")) {
-			try {
-				List<Accessorie> accessorie = new ArrayList<Accessorie>();
-				accessorie = findGoods.getAllAccessorie(categoryName);
-				response.setAccessorie(accessorie);
-			} catch (ServiceException e) {
-				
-				e.printStackTrace();
-			}
-		}
 		
-		if (categoryName.equals("Pump")) {
 			try {
-				List<Pump> pump = new ArrayList<Pump>();
-				pump = findGoods.getAllPumps(categoryName);
-				response.setPump(pump);
+				List<Velogoods> velogoods = new ArrayList<Velogoods>();
+				velogoods = findGoods.getAllGoods(categoryName);
+				response.setVelogoods(velogoods);;
 			} catch (ServiceException e) {
 				
 				e.printStackTrace();
 			}
-		}
+		
 		return response;
 	}
 }

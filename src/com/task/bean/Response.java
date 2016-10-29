@@ -1,10 +1,11 @@
-package com.task.beans;
+package com.task.bean;
 
 import java.util.List;
 
 import com.task.bean.entity.Accessorie;
 import com.task.bean.entity.Bicycle;
 import com.task.bean.entity.Pump;
+import com.task.bean.entity.Velogoods;
 
 
 
@@ -12,9 +13,13 @@ public class Response {
 	private boolean errorStatus;
 	private String errorMessage;
 	private String simpleMessage;
-	private List<Accessorie> accessorie;
-	private List<Bicycle> bicycle;
-	private List<Pump> pump;
+	private List<Velogoods> velogoods;
+	public List<Velogoods> getVelogoods() {
+		return velogoods;
+	}
+	public void setVelogoods(List<Velogoods> velogoods) {
+		this.velogoods = velogoods;
+	}
 	private List<Float> listFloat;
 	
 	public List<Float> getListFloat() {
@@ -41,24 +46,7 @@ public class Response {
 	public void setSimpleMessage(String simpleMessage) {
 		this.simpleMessage = simpleMessage;
 	}
-	public List<Accessorie> getAccessorie() {
-		return accessorie;
-	}
-	public void setAccessorie(List<Accessorie> accessorie) {
-		this.accessorie = accessorie;
-	}
-	public List<Bicycle> getBicycle() {
-		return bicycle;
-	}
-	public void setBicycle(List<Bicycle> bicycle) {
-		this.bicycle = bicycle;
-	}
-	public List<Pump> getPump() {
-		return pump;
-	}
-	public void setPump(List<Pump> pump) {
-		this.pump = pump;
-	}
+	
 	
 	
 }

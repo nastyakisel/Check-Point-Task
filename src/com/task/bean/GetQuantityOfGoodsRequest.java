@@ -1,4 +1,4 @@
-package com.task.beans;
+package com.task.bean;
 
 public class GetQuantityOfGoodsRequest extends Request{
 	String name;

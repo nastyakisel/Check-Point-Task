@@ -1,14 +1,15 @@
 package com.task.command.impl;
 
+import com.task.bean.DeleteGoodsRequest;
+import com.task.bean.Request;
+import com.task.bean.Response;
+import com.task.bean.UpdateGoodsRequest;
 import com.task.bean.entity.Goods;
-import com.task.beans.DeleteGoodsRequest;
-import com.task.beans.Request;
-import com.task.beans.Response;
-import com.task.beans.UpdateGoodsRequest;
+import com.task.bean.entity.Velogoods;
 import com.task.command.Command;
+import com.task.service.UpdateGoods;
 import com.task.service.exeption.ServiceException;
 import com.task.service.factory.ServiceFactory;
-import com.task.services.UpdateGoods;
 
 public class DeleteGoodsCommand implements Command{
 	
@@ -20,8 +21,7 @@ public class DeleteGoodsCommand implements Command{
 		deleteGoodsRequest = (DeleteGoodsRequest)request;
 	}
 	
-	Goods goods;
-	goods = deleteGoodsRequest.getGoods();
+	Integer goodId = deleteGoodsRequest.getId();
 	ServiceFactory factory = ServiceFactory.getInstance();
 	
 	UpdateGoods updateService = factory.getUpdateGoodsService();
@@ -29,7 +29,7 @@ public class DeleteGoodsCommand implements Command{
 	Response response= new Response();
 	
 	try {
-		updateService.deleteById(goods);;
+		updateService.deleteById(goodId);;
 		response.setErrorStatus(false);
 		response.setSimpleMessage("Товар удален");
 	} catch (ServiceException e) {

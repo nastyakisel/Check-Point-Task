@@ -3,15 +3,15 @@ package com.task.command.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.task.beans.AddNewGoodsRequest;
-import com.task.beans.GetQuantityOfGoodsRequest;
-import com.task.beans.Request;
-import com.task.beans.Response;
+import com.task.bean.AddNewGoodsRequest;
+import com.task.bean.GetQuantityOfGoodsRequest;
+import com.task.bean.Request;
+import com.task.bean.Response;
 import com.task.command.Command;
+import com.task.service.FindGoods;
+import com.task.service.UpdateGoods;
 import com.task.service.exeption.ServiceException;
 import com.task.service.factory.ServiceFactory;
-import com.task.services.FindGoods;
-import com.task.services.UpdateGoods;
 
 public class GetQuantityOfGoodsCommand implements Command{
 	

@@ -1,4 +1,4 @@
-package com.task.beans;
+package com.task.bean;
 
 public class Request {
 	private String commandName;

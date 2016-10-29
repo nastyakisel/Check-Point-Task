@@ -1,9 +1,9 @@
 package com.task.service.factory;
 
-import com.task.services.FindGoods;
-import com.task.services.UpdateGoods;
-import com.task.sevice.impl.FindGoodsServise;
-import com.task.sevice.impl.UpdateGoodsService;
+import com.task.service.FindGoods;
+import com.task.service.UpdateGoods;
+import com.task.service.impl.FindGoodsServise;
+import com.task.service.impl.UpdateGoodsService;
 
 
 
