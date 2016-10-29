@@ -1,4 +1,4 @@
-package com.task.controller;
+package com.task.controller;// доменное имя компании наоборот, имя проекта, пакеты приложения - что пропустили?
 
 import org.apache.log4j.Logger;
 
@@ -18,7 +18,7 @@ public class Controller {
 
 		Response response = command.execute(request);
 		
-		logger.debug("������� ���������");
+		logger.debug("Êîìàíäà âûïîëíåíà");
 		return response;
 
 	}
