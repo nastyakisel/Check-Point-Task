@@ -35,7 +35,7 @@ public class GetQuantityOfGoodsCommand implements Command{
 			arr = findGoods.getQuantity(categoryName);
 			response.setErrorStatus(false);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			e.printStackTrace();// а где логгирование?
 			response.setErrorStatus(true);
 		}
 		response.setListFloat(arr);
