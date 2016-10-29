@@ -2,7 +2,7 @@ package com.task.bean.entity;
 
 import java.util.Set;
 
-public class Category {
+public class Category {// equals, hashCode, toString?
 	private Integer id;
 	private String categoryName;
 	
