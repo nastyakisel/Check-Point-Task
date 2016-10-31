@@ -1,4 +1,6 @@
-package com.task.db;
+package com.task.db;//ну существует же слой ДАО, зачем это все из него выносить???
+// если ты создаешь пакет, на уровне, гед пакеты описывают слои приложения - ты создаешь новый слои
+// слоя db отдельно я что-то в товом приложении не наблюдаю
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,7 +10,7 @@ import com.mysql.jdbc.Statement;
 
 public class DB {
 	private Connection con;
-	private Statement st;
+	private Statement st;// а вдруг надо PreparedStatement - что делать будем?
 	
 	public DB(String url, String user, String password) throws ClassNotFoundException, SQLException  {
 		Class.forName("com.mysql.jdbc.Driver");
