@@ -29,10 +29,10 @@ public class UpdateGoodsCommand implements Command {
 		try {
 			updateService.update(goods);
 			response.setErrorStatus(false);
-			response.setSimpleMessage("����� ��������");
+			response.setSimpleMessage("Òîâàð îáíîâëåí");
 		} catch (ServiceException e) {
 			
-			e.printStackTrace();
+			e.printStackTrace();// это что за обработка исключения???
 		}
 		return response;
 	}

@@ -18,7 +18,9 @@ import com.task.db.DB;
 
 public class GoodsDao implements Dao {
 
-	private DB db;
+	private DB db;//итак, объкт goodsDAO д.б. один, чтобы не плодить сущностей сверх необходимого
+	// => его методы м.б. вызваны параллельно несколькими потоками => методы будут пользоваться этои 
+	// переменной тоже одновременно - и что в результате получится?
 	
 	public GoodsDao() {
 
@@ -29,13 +31,13 @@ public class GoodsDao implements Dao {
 			db = new DB("jdbc:mysql://localhost:3306/", "root", "root");
 		} catch (ClassNotFoundException e) {
 			
-			e.printStackTrace();
+			e.printStackTrace();// ну-ну, объект не создался, но мы затихарится, исключение погасим и.... что дальше-то в коде будет?
 		}
 		
 		List<Velogoods> veloGoods = new ArrayList<Velogoods>();
 		
 		String sql = "SELECT* FROM Velogoods WHERE FK_Category_ID IN(SELECT id FROM Category WHERE categoryName="
-				+ "'" + categoryName + "')";
+				+ "'" + categoryName + "')";// именовать нормально, а не sql + лучше выносить в private static final поля
 		
 		Statement st = (Statement) db.getCon().createStatement();
 		st.executeUpdate("USE velo_rent");
@@ -50,6 +52,8 @@ public class GoodsDao implements Dao {
 			// System.out.println(rs.getString(1));
 			veloGoods.add(velogood);
 		}
+		
+		// connecion, statement, resultset кто закрывать будет?
 		return veloGoods;
 		
 	}
@@ -74,7 +78,7 @@ public class GoodsDao implements Dao {
 				
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
-		System.out.println("����� �������� �������� � ���� ������");
+		System.out.println("Òîâàð óñïåøííî äîáàâëåí â áàçó äàííûõ");
 	}
 
 	@Override
@@ -93,7 +97,7 @@ public class GoodsDao implements Dao {
 		//System.out.println(sql);
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
-		System.out.println("������ ������� �������");
+		System.out.println("Çàïèñü óñïåøíî óäàëåíà");// выкашивайте такой код хоть при сдаче
 
 	}
 
@@ -119,7 +123,7 @@ public class GoodsDao implements Dao {
 		
 		st.executeUpdate("USE velo_rent");
 		st.executeUpdate(sql);
-		System.out.println("������ ������� ���������������");
+		System.out.println("Çàïèñü óñïåøíî îòðåäàêòèðîâàíà");
 	}
 
 	@Override
