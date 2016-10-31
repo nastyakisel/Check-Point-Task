@@ -13,15 +13,15 @@ import com.task.service.exeption.ServiceException;
 public class UpdateGoodsService implements UpdateGoods{
 	
 	@Override
-	public void addGoodsToDB(Velogoods goods) throws ServiceException {
+	public void addGoodsToDB(Velogoods goods) throws ServiceException {// сервисы не имеют права отказываться от проверки входящих параметров
 		DAOFactory factory = DAOFactory.getInstance();
 		GoodsDao dao = (GoodsDao) factory.getGoodsDao();
 		
 		try {
 			dao.addToDB(goods);
-		} catch (DAOException | SQLException e) {
+		} catch (DAOException | SQLException e) {// откуда здесь SQLException? его же дальше ДАО выпускать нельзя!!!
 			
-			e.printStackTrace();
+			e.printStackTrace();// где throw new ServiceException(e)???
 		}
 	}
 	
